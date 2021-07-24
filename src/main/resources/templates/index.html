@@ -1,0 +1,42 @@
+<!Doctype html>
+
+<html xmlns:th="http://thymeleaf.org">
+
+<!-- Adding the fragment site-head in layout.html-->
+<head th:replace="layout :: site-head">
+<!-- Adding the fragment logged-out in layout.html-->
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Home Page! </title>
+<!-----review  script--->
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<!-----review  script end--->
+</head>
+
+<header th:replace="layout :: logged-out"></header>
+<style>
+body {
+    background-image: linear-gradient(#4A148C, #E53935);
+    background-repeat: no-repeat;
+    color: #000;
+    overflow-x: hidden
+}
+
+</style>
+
+<body>  <marquee direction = "right">❗⚡ Welcome to the Image Hoster WebApp ⚡❗</marquee>
+<center>
+    <h1>Image Hoster</h1>
+    <main id="images">
+        <post th:each="i : ${images}">
+            <div>
+                <img style="max-width:100%;height:auto;" th:src="'data:image/jpeg;base64,'+${i.imageFile}"/>
+            </div>
+            <h2 th:text="${i.title}"></h2>
+            <i>Posted On: </i> <span th:text="${i.date}"></span>
+        </post>
+    </main>
+</center>
+</body>
+
+</html>

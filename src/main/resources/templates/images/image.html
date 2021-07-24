@@ -1,0 +1,57 @@
+<!Doctype html>
+
+<html xmlns:th="http://thymeleaf.org">
+
+<head th:replace="layout :: site-head">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image! </title>
+    <!-----review  script--->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <!-----review  script end--->
+</head>
+<!-- Adding the fragment logged-out in layout.html-->
+<header th:replace="layout :: logged-out"></header>
+
+<style>
+body {
+    background-image: linear-gradient(#4A148C, #E53935);
+    background-repeat: no-repeat;
+    color: #000;
+    overflow-x: hidden
+}
+
+</style>
+
+<!-- Using the logged-in fragment -->
+<header th:replace="layout :: logged-in"></header>
+<!-- Display all the details of a particular image-->
+<body>
+<center>
+    <h1>Welcome User. This is the image</h1>
+    <main id="image">
+
+        <div>
+            <img style="max-width:100%;height:auto;" th:src="'data:image/jpeg;base64,'+${image.imageFile}"/>
+        </div>
+        <h3 style="color:black;" th:text="${image.title}">Title of image</h3>
+        <div><i>Posted On: </i> <span th:text="${image.date}"></span></div>
+        <div><i>Description: </i> <span th:text="${image.description}"></span></div>
+
+        <!-- Code to display all  the tags of an image. ${tags} refers to a tags attribute in Model type object-->
+        <div>Tags:-
+            <header th:each="tag : ${tags}">
+                <span th:text="${tag.name}">Tag name</span>
+            </header>
+        </div>
+
+        <div>
+            <a th:href="@{/editImage(imageId=${image.id})}">Edit</a>
+            <form th:action="@{/deleteImage(imageId=${image.id})}" th:method="delete">
+                <input type="submit" value="Delete"/>
+            </form>
+        </div>
+    </main>
+</center>
+</body>
+</html>

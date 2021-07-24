@@ -1,0 +1,46 @@
+<!Doctype html>
+
+<html xmlns:th="http://thymeleaf.org">
+
+<head th:replace="layout :: site-head">
+    <title>Upload</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  <meta charset="utf-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet" />
+</head>
+
+<!-- Using the logged-in fragment -->
+<header th:replace="layout :: logged-in"></header>
+<body>
+<div class="fresh-table full-color-orange" style="background-image: url('https://images.pexels.com/photos/707582/pexels-photo-707582.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260');  height: 650px;
+   width: 100%;">
+
+
+    <h1>Upload New Image</h1>
+
+    <form method="post" th:action="@{/images/upload}" enctype="multipart/form-data">
+        <div>Image Title:</div>
+        <div><input type="text" id="title" name="title"/></div>
+
+        <div>Description:</div>
+
+        <div><textarea rows="7" cols="100" name="description"></textarea></div>
+        <div>
+            <label for="file">Upload File</label>
+            <input type="file" name="file" id="file"/>
+        </div>
+
+        <!-- This piece of code accepts the string of all the tags separated by a comma-->
+        <div>
+            <label for="tags">Tags</label>
+            <input type="text" name="tags" id="tags"/>
+            <p> Multiple tags are allowed. Please separate tags by "," such as labrador,dog,yellow </p>
+        </div>
+
+        <div>
+            <input type="submit" class="btn btn-primary" value="Submit"/>
+        </div>
+    </form>
+
+</body>
+</html>

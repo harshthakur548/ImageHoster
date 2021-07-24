@@ -1,0 +1,37 @@
+<!Doctype html>
+
+<html xmlns:th="http://thymeleaf.org">
+<head th:fragment="site-head">
+    <title>Spring MVC Application - Image Hoster</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body>
+<div>
+
+
+    <!-- The logged-out fragment now contains Login as well as Registration-->
+    <header th:fragment="logged-out" th:remove="tag">
+        <header>
+            <a href="users/login.html" th:href="@{/users/login}" id="alertBtn" class="btn btn-primary btn-lg">Login</a>
+            <a href="users/registration.html" th:href="@{/users/registration}" id="alertBtn" class="btn btn-primary btn-lg" style="float:right;">Registration</a>
+        </header>
+    </header>
+</div>
+    <!-- Define a logged-in fragment-->
+    <header th:fragment="logged-in" th:remove="tag">
+        <header>
+            <b>Logged in as:</b>
+            <label th:text="${session.loggeduser.profile.fullName}"></label> |
+            <a href="images/upload.html" th:href="@{/images/upload}"  id="alertBtn" class="btn btn-primary btn-lg">Upload Image</a>
+            <form method="post" th:action="@{/users/logout}"  id="alertBtn" class="btn btn-primary btn-lg">
+                <input type="submit" class="btn btn-danger" value="Logout"/>
+            </form>
+        </header>
+    </header>
+
+    </body>
+
+</html>

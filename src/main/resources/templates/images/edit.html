@@ -1,0 +1,46 @@
+<!Doctype html>
+<html xmlns:th="http://thymeleaf.org">
+<head th:replace="layout :: site-head">
+    <title>Edit</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet" />
+</head>
+<!-- Using the logged-in fragment -->
+<header th:replace="layout :: logged-in"></header>
+
+<body>
+
+<div class="fresh-table full-color-orange" style="background-image: url('https://images.pexels.com/photos/707582/pexels-photo-707582.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260');  height: 650px;
+   width: 100%;">
+
+    <h1>Edit Image</h1>
+
+    <form th:method="put" th:action="@{/editImage(imageId=${image.id})}" enctype="multipart/form-data">
+
+        <div>Image Title :</div>
+        <div>
+            <input type="text" name="title" size="70" th:value="${image.title}"/>
+        </div>
+
+        <div> Description :</div>
+        <div>
+            <textarea rows="7" cols="100" name="description" th:text="${image.description}"></textarea>
+        </div>
+
+        <div>
+            <label for="file">Edit File</label>
+            <input type="file" name="file" id="file"/>
+        </div>
+        <!-- The code provides an option to edit the tags of an image and also displays the previous assigned tags to an image-->
+        <div>
+            <label for="tags">Edit Tags</label>
+            <textarea type="text" name="tags" id="tags" th:text="${tags}"></textarea>
+            <p>Multiple tags are allowed. Please separate tags by "," such as labrador,dog,yellow </p>
+        </div>
+
+        <input type="submit" value="Submit"/>
+    </form>
+</body>
+</html>
